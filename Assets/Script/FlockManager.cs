@@ -6,14 +6,19 @@ public class FlockManager : MonoBehaviour
 {
     // Variáveis
     public GameObject fishPrefab;
-    public GameObject fishPrefab2;
-
     public int numFish = 20;
     public GameObject[] allFish;
     public Vector3 swinLimits = new Vector3(5, 5, 5);
 
+    [Header("Configurações do Cardume")]
+    [Range(0f,5f)]
     public float minSpeed;
+    [Range(0f, 5f)]
     public float maxSpeed;
+    [Range(1f, 10f)]
+    public float neighbourDistance;
+    [Range(0f, 5f)]
+    public float rotationSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -27,18 +32,8 @@ public class FlockManager : MonoBehaviour
             Vector3 pos = this.transform.position + new Vector3(Random.Range(-swinLimits.x, swinLimits.x),
                                                                 Random.Range(-swinLimits.y, swinLimits.y),
                                                                 Random.Range(-swinLimits.z, swinLimits.z));
-
-            // Caso seja par, irá instanciar um peixe e se for impar, irá instanciar outro
-            if (i%2 == 1)
-            {
-                // Instancia o peixe como um gameObject(cast) na posição aleatorizada
-                allFish[i] = (GameObject)Instantiate(fishPrefab, pos, Quaternion.identity);
-            }
-            else if(i%2 == 0)
-            {
-                // Instancia o peixe como um gameObject(cast) na posição aleatorizada
-                allFish[i] = (GameObject)Instantiate(fishPrefab2, pos, Quaternion.identity);
-            }
+            // Instancia o peixe
+            allFish[i] = (GameObject)Instantiate(fishPrefab, pos, Quaternion.identity);
             // Faz a referencia do myManager nos peixes instanciados
             allFish[i].GetComponent<Flock>().myManager = this;
         }
