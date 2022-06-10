@@ -18,34 +18,45 @@ public class Flock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        // Recebe os limites do objeto que está com o script MyManager e aumenta o limite da area onde os peixes nadam
         Bounds b = new Bounds(myManager.transform.position, myManager.swinLimits * 2);
+        // Gera o hit do raycast
         RaycastHit hit = new RaycastHit();
+        // Direção apontando para o pilar, para poder realizar o reflect
         Vector3 direction = myManager.transform.position - transform.position;
+        // Se o peixe não entrar no bounds
         if (!b.Contains(transform.position))
         {
             turning = true;
+            // A direção será apontada até o objeto que está com o myManager atribuido
             direction = myManager.transform.position - transform.position;
         }
+        // Gera um raycast e aponta para frente, se detectar algo, irá gerar o resultado e atribuirá na direção
         else if (Physics.Raycast(transform.position, this.transform.forward * 50, out hit))
         {
             turning = true;
             direction = Vector3.Reflect(this.transform.forward, hit.normal);
         }
         else
+        {
             turning = false;
-
+        }
+        // Se o turning está ativo
         if (turning)
         {
+            // Faz a rotação até a direção gerada anteriormente
             transform.rotation = Quaternion.Slerp(transform.rotation,
             Quaternion.LookRotation(direction),
             myManager.rotationSpeed * Time.deltaTime);
         }
+        // Caso contrário,
         else
         {
+            // Gera um valor randomico, e se for menor que 10, ele aleatoriza a velocidade
             if (Random.Range(0, 100) < 10)
                 speed = Random.Range(myManager.minSpeed,
                 myManager.maxSpeed);
+            // Gera um valor randomico, e se for menor que 20, ele chama o método ApplyRules
             if (Random.Range(0, 100) < 20)
                 ApplyRules();
         }

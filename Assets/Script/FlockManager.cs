@@ -44,10 +44,13 @@ public class FlockManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Atribui a posição do objeto que recebe esse script na variável goalPos (Vector3)
         goalPos = this.transform.position;
+        // com o random.range, ele gera uma chance de 10% de entrar dentro do if
         if (Random.Range(0, 100) < 10)
-            goalPos = this.transform.position + new Vector3(Random.Range(-swinLimits.x,
-            swinLimits.x),
+            // faz uma pequena alteração na posição do ponto de destino, para fazer os peixes não rodarem no mesmo ponto
+            goalPos = this.transform.position + new Vector3(
+            Random.Range(-swinLimits.x,swinLimits.x),
             Random.Range(-swinLimits.y, swinLimits.y),
             Random.Range(-swinLimits.z, swinLimits.z));
     }
