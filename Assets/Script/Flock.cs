@@ -7,6 +7,7 @@ public class Flock : MonoBehaviour
     // Variáveis
     public FlockManager myManager;
     float speed;
+    bool turning = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,9 +18,39 @@ public class Flock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ApplyRules();
+
+        Bounds b = new Bounds(myManager.transform.position, myManager.swinLimits * 2);
+        RaycastHit hit = new RaycastHit();
+        Vector3 direction = myManager.transform.position - transform.position;
+        if (!b.Contains(transform.position))
+        {
+            turning = true;
+            direction = myManager.transform.position - transform.position;
+        }
+        else if (Physics.Raycast(transform.position, this.transform.forward * 50, out hit))
+        {
+            turning = true;
+            direction = Vector3.Reflect(this.transform.forward, hit.normal);
+        }
+        else
+            turning = false;
+
+        if (turning)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation,
+            Quaternion.LookRotation(direction),
+            myManager.rotationSpeed * Time.deltaTime);
+        }
+        else
+        {
+            if (Random.Range(0, 100) < 10)
+                speed = Random.Range(myManager.minSpeed,
+                myManager.maxSpeed);
+            if (Random.Range(0, 100) < 20)
+                ApplyRules();
+        }
         // faz a movimentação no eixo Z
-        transform.Translate(0,0,Time.deltaTime * speed);
+        transform.Translate(0, 0, Time.deltaTime * speed);
     }
 
     public void ApplyRules()
