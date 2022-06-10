@@ -538,7 +538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfd5128b877c1484f83ef5288e41cb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishPrefab: {fileID: 8062874738814718827, guid: 8f62445bcc8b81842a6aa4e58200fe16, type: 3}
+  fishPrefab: {fileID: 1733855665772604, guid: b0489fdb6d64a4a4ba8e194e561d60cd, type: 3}
   numFish: 100
   allFish: []
   swinLimits: {x: 1, y: 1, z: 1}

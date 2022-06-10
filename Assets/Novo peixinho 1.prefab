@@ -11,11 +11,10 @@ GameObject:
   - component: {fileID: 2617222339928584224}
   - component: {fileID: 4225618364790582135}
   - component: {fileID: 53186597489683754}
-  - component: {fileID: 2013715849627352990}
   - component: {fileID: -2696445559750534558}
   - component: {fileID: 1390837378351975092}
   m_Layer: 0
-  m_Name: Novo peixinho
+  m_Name: Novo peixinho 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,19 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2013715849627352990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8062874738814718827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c9aa55d03b20564bb385bf9fa9fb8f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myManager: {fileID: 0}
 --- !u!114 &-2696445559750534558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,7 +141,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.3
+  m_Time: 0.1
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1

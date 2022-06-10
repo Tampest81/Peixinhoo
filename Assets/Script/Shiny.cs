@@ -12,10 +12,6 @@ public class Shiny : MonoBehaviour
     public bool reverse = false;
 
     Vector3 point;
-    private void Start()
-    {
-        point = GameObject.Find("Mouse").GetComponent<Mouse>().point;
-    }
 
     private void Update()
     {
@@ -27,9 +23,6 @@ public class Shiny : MonoBehaviour
         Color col = Color.HSVToRGB(h, 1, 1);
 
         material.color = col;
-
-        this.transform.Translate((point - this.transform.position)*0.01f, Space.World);
-
     }
 
     public void SwitchCase(float color)
